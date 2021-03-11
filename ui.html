@@ -1,0 +1,36 @@
+<style>
+    * {
+        font-family: Inter, sans-serif;
+    }
+</style>
+
+<h2>Rectangle Creator</h2>
+<p>Count: <input id="count" value="5" /></p>
+<button id="create">Create</button>
+<button id="cancel">Cancel</button>
+<h2>Half Opacity</h2>
+<button id="halfOpacity">Half Opacity</button>
+<script>
+    document.getElementById("create").onclick = () => {
+        const textbox = document.getElementById("count");
+        const count = parseInt(textbox.value, 10);
+        parent.postMessage(
+            { pluginMessage: { type: "create-rectangles", count } },
+            "*"
+        );
+    };
+
+    document.getElementById("cancel").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+    };
+    document.getElementById("halfOpacity").onclick = () => {
+        parent.postMessage(
+            {
+                pluginMessage: {
+                    type: "half-opacity",
+                },
+            },
+            "*"
+        );
+    };
+</script>
