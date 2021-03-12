@@ -1,7 +1,7 @@
 {
-  "name": "ComponentUsage",
-  "id": "951731497748976080",
-  "api": "1.0.0",
-  "main": "code.js",
-  "ui": "ui.html"
+    "name": "OfficialCase",
+    "id": "951731497748976080",
+    "api": "1.0.0",
+    "main": "code.js",
+    "ui": "ui.html"
 }

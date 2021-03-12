@@ -10,19 +10,19 @@
 <button id="cancel">Cancel</button>
 <h2>Half Opacity</h2>
 <button id="halfOpacity">Half Opacity</button>
+<button id="recursive">recursive</button>
 <script>
+    // 创建矩形
     document.getElementById("create").onclick = () => {
         const textbox = document.getElementById("count");
         const count = parseInt(textbox.value, 10);
+        // 向 plugin code 发送信息
         parent.postMessage(
             { pluginMessage: { type: "create-rectangles", count } },
             "*"
         );
     };
-
-    document.getElementById("cancel").onclick = () => {
-        parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
-    };
+    // 对所选项半透明
     document.getElementById("halfOpacity").onclick = () => {
         parent.postMessage(
             {
@@ -32,5 +32,28 @@
             },
             "*"
         );
+    };
+    // 递归：计算所有图层（不包括instance子图层）
+    document.getElementById("recursive").onclick = () => {
+        parent.postMessage(
+            {
+                pluginMessage: {
+                    type: "recursive",
+                },
+            },
+            "*"
+        );
+    };
+    // 关闭插件
+    document.getElementById("cancel").onclick = () => {
+        parent.postMessage({ pluginMessage: { type: "cancel" } }, "*");
+    };
+    // 接收来自 plugin code 的信息
+    onmessage = (event) => {
+        console.log(
+            "got layer numbers from the plugin code",
+            event.data.pluginMessage
+        );
+        // alert(event.data.pluginMessage);
     };
 </script>
